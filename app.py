@@ -19,6 +19,8 @@ def save_users():
     with open(DATA_FILE, "w") as f:
         json.dump(All_accounts, f, indent=4)
 
+load_users()  # ✅ ALWAYS load users on startup (works on Render, Gunicorn, etc.)
+
 class User:
     def __init__(self, account_data):
         self.data = account_data
@@ -106,7 +108,6 @@ def create_account():
             flash("❌ Username and password are required.", "error")
             return redirect(url_for('create_account'))
 
-        # Check if username exists
         for acc in All_accounts:
             if acc["username"] == username:
                 flash("❌ Username already exists.", "error")
@@ -123,7 +124,6 @@ def create_account():
         All_accounts.append(account)
         save_users()
 
-        # Log in user immediately and redirect to dashboard
         session['username'] = username
         session['pin'] = pin
 
@@ -171,7 +171,6 @@ def dashboard():
                 flash("❌ Insufficient balance for transfer.", "error")
                 return redirect(url_for('dashboard'))
 
-            # Perform transfer
             user.data["initial_balance"] -= amount
             user.data["transaction_history"].append(f"Transferred {amount} to {recipient_username}")
             recipient.data["initial_balance"] += amount
@@ -220,5 +219,4 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == "__main__":
-    load_users()
     app.run(debug=True)
