@@ -1,0 +1,551 @@
+/* Reset & base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 480px;
+  width: 100%;
+  background: var(--card-bg);
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+  padding: 2rem 3rem;
+  text-align: center;
+  position: relative;
+}
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+p, label {
+  font-size: 1.1rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin: 0.5rem 0 1.2rem 0;
+  border: 2px solid var(--input-border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--input-bg);
+  color: var(--text);
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.75rem 1.6rem;
+  border-radius: 25px;
+  border: none;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-green {
+  background: linear-gradient(135deg, #38b000, #70e000);
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(56, 176, 0, 0.6);
+}
+
+.btn-green:hover {
+  background: linear-gradient(135deg, #70e000, #38b000);
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #d90429, #f94144);
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(217, 4, 41, 0.6);
+}
+
+.btn-red:hover {
+  background: linear-gradient(135deg, #f94144, #d90429);
+}
+
+.form {
+  text-align: left;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Improved & Animated Transaction Form Styling --- */
+.transaction-form {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow-light);
+  padding: 1.7em 1.3em 1.3em 1.3em;
+  margin-bottom: 2em;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background 0.4s, box-shadow 0.4s, border 0.3s;
+  border: 1.5px solid var(--input-border);
+  animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.transaction-form label {
+  display: block;
+  margin-bottom: 0.3em;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.01em;
+  transition: color 0.3s;
+}
+
+.transaction-form input,
+.transaction-form select {
+  width: 100%;
+  padding: 0.7em 0.9em;
+  margin-bottom: 1em;
+  border: 2px solid var(--input-border);
+  border-radius: 9px;
+  font-size: 1em;
+  background: var(--input-bg);
+  color: var(--text);
+  transition: border 0.2s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.transaction-form input:focus,
+.transaction-form select:focus {
+  border-color: var(--accent);
+  outline: none;
+  background: var(--input-focus-bg);
+  box-shadow: 0 0 0 2px var(--accent-shadow);
+  animation: inputPulse 0.4s;
+}
+
+@keyframes inputPulse {
+  0% { box-shadow: 0 0 0 0 var(--accent-shadow);}
+  70% { box-shadow: 0 0 0 6px var(--accent-shadow);}
+  100% { box-shadow: 0 0 0 2px var(--accent-shadow);}
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1em;
+  justify-content: flex-end;
+  margin-bottom: 0.5em;
+}
+
+.btn {
+  padding: 0.6em 1.4em;
+  border: none;
+  border-radius: 9px;
+  font-size: 1.08em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  will-change: transform;
+}
+
+.btn-green {
+  background: linear-gradient(135deg, #38b000, #70e000);
+  color: #fff;
+}
+
+.btn-green:hover, .btn-green:focus {
+  background: linear-gradient(135deg, #70e000, #38b000);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(56, 176, 0, 0.18);
+}
+
+.btn-red {
+  background: linear-gradient(135deg, #d90429, #f94144);
+  color: #fff;
+}
+
+.btn-red:hover, .btn-red:focus {
+  background: linear-gradient(135deg, #f94144, #d90429);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(217, 4, 41, 0.18);
+}
+
+.btn-blue {
+  background: linear-gradient(135deg, #2563eb, #38b6ff);
+  color: #fff;
+}
+
+.btn-blue:hover, .btn-blue:focus {
+  background: linear-gradient(135deg, #38b6ff, #2563eb);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.18);
+}
+
+/* --- Transaction List Styling --- */
+.transaction-list {
+  list-style: none;
+  padding-left: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1.5px solid var(--input-border);
+  border-radius: 12px;
+  background: var(--card-bg);
+  margin-top: 1.2em;
+  margin-bottom: 2em;
+  box-shadow: var(--shadow-light);
+  animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+.transaction-list li {
+  padding: 0.7rem 1.2rem;
+  border-bottom: 1px solid var(--input-border);
+  font-size: 1.04rem;
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.transaction-list li:last-child {
+  border-bottom: none;
+}
+
+.balance-card {
+  background: var(--accent-light);
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-light);
+}
+
+.balance-amount {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  margin-top: 0.3rem;
+}
+
+.logout-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ff4d6d;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 77, 109, 0.5);
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.logout-btn:hover {
+  background: #d9435a;
+}
+
+.small-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.flash-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.flash-messages li {
+  margin-bottom: 0.6rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  user-select: none;
+}
+
+.flash-messages li.success {
+  background-color: #38b00033;
+  color: #1a6f00;
+  border: 1.5px solid #38b000aa;
+}
+
+.flash-messages li.error {
+  background-color: #d9042933;
+  color: #8b0000;
+  border: 1.5px solid #d90429aa;
+}
+
+.flash-messages li.info {
+  background-color: #0096ff33;
+  color: #004a8b;
+  border: 1.5px solid #0096ffaa;
+}
+
+/* Toggle Dark / Light Mode Button */
+.toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 4px 8px var(--accent-shadow);
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.toggle-btn:hover {
+  background: var(--accent-hover);
+}
+
+/* Light mode variables */
+.light-mode {
+  --bg: linear-gradient(135deg, #e0f7fa, #ffffff);
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --text: #222;
+  --text-secondary: #555;
+  --input-bg: #fefefe;
+  --input-border: #ccc;
+  --accent: #0077b6;
+  --accent-hover: #0096c7;
+  --accent-light: #caf0f8;
+  --accent-dark: #023e8a;
+  --accent-shadow: rgba(0, 119, 182, 0.5);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-light: 0 6px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode variables */
+.dark-mode {
+  --bg: linear-gradient(135deg, #1e1e2f, #2c2c4c);
+  --card-bg: rgba(32, 32, 52, 0.9);
+  --text: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --input-bg: #2c2c4c;
+  --input-border: #555;
+  --accent: #38b000;
+  --accent-hover: #70e000;
+  --accent-light: #2c3e18;
+  --accent-dark: #1b2a00;
+  --accent-shadow: rgba(56, 176, 0, 0.5);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  --shadow-light: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .transaction-form {
+  background: var(--card-bg);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  border: 1.5px solid var(--input-border);
+}
+
+body.dark-mode .transaction-list {
+  background: var(--card-bg);
+  border: 1.5px solid var(--input-border);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+
+body.dark-mode .transaction-list li {
+  color: var(--text);
+}
+
+body.dark-mode .btn {
+  color: #fff;
+}
+
+body.dark-mode .btn-green { background: linear-gradient(135deg, #16a34a, #22c55e); }
+body.dark-mode .btn-green:hover, body.dark-mode .btn-green:focus { background: linear-gradient(135deg, #22c55e, #16a34a); }
+body.dark-mode .btn-red { background: linear-gradient(135deg, #b91c1c, #ef4444); }
+body.dark-mode .btn-red:hover, body.dark-mode .btn-red:focus { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+body.dark-mode .btn-blue { background: linear-gradient(135deg, #1d4ed8, #38b6ff); }
+body.dark-mode .btn-blue:hover, body.dark-mode .btn-blue:focus { background: linear-gradient(135deg, #38b6ff, #1d4ed8); }
+
+.dashboard-container {
+  padding-bottom: 4rem;
+}
+/* Responsive styles */
+@media (max-width: 600px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"] {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+  }
+
+  .balance-amount {
+    font-size: 2.2rem;
+  }
+}
+@media (max-width: 400px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"] {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .balance-amount {
+    font-size: 1.8rem;
+  }
+}
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .container {
+    box-shadow: none;
+    border-radius: 0;
+    padding: 1rem;
+  }
+
+  .btn, .logout-btn, .toggle-btn {
+    display: none;
+  }
+
+  .balance-card, .transaction-list {
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
+/* Accessibility styles */
+:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+/* High contrast mode */
+@media screen and (forced-colors: active) {
+  body {
+    background: Canvas;
+    color: CanvasText;
+  }
+
+  .container {
+    background: Window;
+    border: 1px solid WindowText;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"] {
+    background: Window;
+    color: WindowText;
+    border-color: ButtonText;
+  }
+
+  .btn, .logout-btn, .toggle-btn {
+    background: Highlight;
+    color: HighlightText;
+  }
+
+  .btn:hover, .logout-btn:hover, .toggle-btn:hover {
+    background: HighlightText;
+    color: Highlight;
+  }
+}
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Yahya's Bank</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body class="light-mode">
+  <div class="container">
+    <h1>Login to Yahya's Bank</h1>
+
+    <ul class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </ul>
+
+    <form method="POST" class="form">
+      <label for="username">👤 Username</label>
+      <input type="text" id="username" name="username" required autocomplete="username" />
+
+      <label for="pin">🔑 PIN</label>
+      <input type="password" id="pin" name="pin" required pattern="\d{4}" maxlength="4" placeholder="4-digit PIN" autocomplete="current-password"/>
+
+      <button class="btn btn-green" type="submit">Login</button>
+    </form>
+
+    <p class="small-text">
+      Don't have an account? <a href="{{ url_for('create_account') }}">Create one</a>
+    </p>
+
+    <button id="toggleMode" class="toggle-btn" aria-label="Toggle dark/light mode">🌙</button>
+  </div>
+
+<script>
+  // Dark/light mode toggle with localStorage persistence
+  const toggleBtn = document.getElementById('toggleMode');
+  const body = document.body;
+
+  function setMode(mode) {
+    if(mode === 'dark'){
+      body.classList.add('dark-mode');
+      body.classList.remove('light-mode');
+      toggleBtn.textContent = '☀️';
+      localStorage.setItem('mode', 'dark');
+    } else {
+      body.classList.add('light-mode');
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = '🌙';
+      localStorage.setItem('mode', 'light');
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if(body.classList.contains('dark-mode')){
+      setMode('light');
+    } else {
+      setMode('dark');
+    }
+  });
+
+  // On page load
+  const savedMode = localStorage.getItem('mode') || 'light';
+  setMode(savedMode);
+</script>
+</body>
+</html>

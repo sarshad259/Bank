@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create Account - Yahya's Bank</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body class="light-mode">
+  <div class="container">
+    <h1>Create New Account</h1>
+
+    <ul class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </ul>
+
+    <form method="POST" class="form">
+      <label for="username">👤 Username</label>
+      <input type="text" id="username" name="username" required autocomplete="username" />
+
+      <label for="password">🔐 Password</label>
+      <input type="password" id="password" name="password" required autocomplete="new-password" />
+
+      <label for="balance">💵 Initial Balance</label>
+      <input type="number" step="0.01" id="balance" name="balance" required min="0" placeholder="0.00" />
+
+      <button class="btn btn-green" type="submit">Create Account</button>
+    </form>
+
+    <p class="small-text">
+      Already have an account? <a href="{{ url_for('login') }}">Login here</a>
+    </p>
+
+    <button id="toggleMode" class="toggle-btn" aria-label="Toggle dark/light mode">🌙</button>
+  </div>
+
+<script>
+  const toggleBtn = document.getElementById('toggleMode');
+  const body = document.body;
+
+  function setMode(mode) {
+    if(mode === 'dark'){
+      body.classList.add('dark-mode');
+      body.classList.remove('light-mode');
+      toggleBtn.textContent = '☀️';
+      localStorage.setItem('mode', 'dark');
+    } else {
+      body.classList.add('light-mode');
+      body.classList.remove('dark-mode');
+      toggleBtn.textContent = '🌙';
+      localStorage.setItem('mode', 'light');
+    }
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if(body.classList.contains('dark-mode')){
+      setMode('light');
+    } else {
+      setMode('dark');
+    }
+  });
+
+  const savedMode = localStorage.getItem('mode') || 'light';
+  setMode(savedMode);
+</script>
+</body>
+</html>
